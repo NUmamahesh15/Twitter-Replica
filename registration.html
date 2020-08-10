@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      form{
+          width:500px;
+          padding: 20px;
+          margin: auto;
+          background: #7a7cbb;
+          font-size: 20px;
+        }
+  </style>
+  </head>
+  <body bgcolor= #E2E8EB>
+    <h1 align=center>{{message}}</h1>
+    <form align=center method=post action='/registration'>
+      USERNAME:
+      <input type="text" name="username" required><br/>
+      DOB:
+      <input type="date" name="dob" required><br/>
+      LOCATION:
+      <input type="text" name="location" required> <br/>
+      GENDER:
+      <input list="gender" name="mygender" required>
+      <datalist id="gender">
+      <option value="MALE">
+      <option value="FEMALE">
+      <option value="TRANSGENDER">
+      </datalist>
+      <br/>
+      <textarea align=center name="message" rows="3" cols="50" maxlength="280">Describe yourself</textarea>
+      <br/>
+      <input type="submit" name="button" value="SUBMIT">
+    </form>
+
+  </body>
+</html>

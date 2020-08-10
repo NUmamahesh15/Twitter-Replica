@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+    div#profile {
+      padding: 5px;
+      border: 1px solid blue;
+      border-radius: 8px;
+      background-color: #3F7670;
+      width: 800px;
+      text-align: center;
+      resize: both;
+      margin: auto;
+    }
+    .navbar{
+      width:100%;
+      height:60px;
+      overflow:hidden;
+      background-color:#ffdd11;
+    }
+    </style>
+  </head>
+  <body bgcolor= #E2E8EB>
+    <div class=navbar>
+      <h2><a href="/"> HOME </a></h2>
+    </div>
+    <div id=profile>
+    <h1 align=center><u>{{message}}</u></h1>
+
+    <form class="tweet" align=center action="/edittweet?name={{tweet_id}}" method="post">
+
+      <textarea align=center name="tweet" rows="4" cols="80" maxlength="280" placeholder="{{my_tweet}}"></textarea><br/>
+      <input type="submit" name="button" value="UPDATE">
+      <input type="submit" name="button" value="CANCEL">
+    </form>
+    </div
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+    .navbar{
+    	width:100%;
+    	height:60px;
+    	overflow:hidden;
+    	background-color:#ffdd11;
+    }
+      div#profile {
+                  padding: 5px;;
+                  border: 1px solid blue;
+                  border-radius: 8px;
+                  background-color: #EFF94F;
+                  width: 800px;
+                  text-align: center;
+                  resize: both;
+                  margin: auto;
+                  }
+    </style>
+  </head>
+  <body bgcolor= #E2E8EB>
+    <div class=navbar>
+    <h1> <a href="/">HOME</a></h1>
+  </div>
+    {% if message=="success" %}
+    <h1 align=center >USER PROFILE FOUND!!!!</h1>
+          <div id="profile">
+          <h1><i><a href="/profiledisplay?name={{profile.userName}}">{{profile.userName}}</a></i></h1>
+          </div>
+
+    {% elif message == "fail" %}
+    <h1 align=center>USER PROFILE NOT FOUND!!!</h1>
+    {% endif %}
+
+
+
+  </body>
+</html>

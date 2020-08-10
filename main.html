@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>MAIN PAGe</title>
+    <style>
+  form.tweet{
+    width:600px;
+    padding: 20px;
+    margin: auto;
+    background: #020B25;
+    font-size: 20px;
+  }
+
+    div#search {
+      padding: 5px;
+      border: 1px solid red;
+      border-radius: 8px;
+      background-color: #CAE2EE;
+      width: 1000px;
+      text-align: center;
+      resize: both;
+      margin: auto;
+    }
+    .navbar{
+    	width:100%;
+    	height:60px;
+    	overflow:hidden;
+    	background-color:#ffdd11;
+    }
+    .left{
+      width:25%;
+    	float:left;
+    	height:auto;
+    }
+    .right{
+      width:75%;
+    	float:right;
+    	height:auto;
+      background-color:#A8CCDE;
+    }
+    .profile-inner{
+
+      background-color:#04BE9C;
+    }
+
+  </style>
+  </head>
+  <body bgcolor=#E2E8EB>
+    <div class="navbar" id="main-navbar">
+      <h2> <a href="{{logout_url}}"> LOGOUT</a></h2>
+    </div>
+
+    <div class="left">
+      <form  action="/searchprofile" method="post">
+        <input type="text" name="search"> <input type="submit" name="button" value="SEARCH PROFILE">
+      </form>
+      <form  action="/searchcontent" method="post">
+        <input type="text" name="search"> <input type="submit" name="button" value="SEARCH CONTENT">
+      </form>
+      <div align=center class="profile-inner">
+      <h1 align=center><u><i>PROFILE</i></u></h1>
+      <b><u>USERNAME</u></b>:{{myuser.userName}}<br/>
+      <b><u>DOB</u></b>:{{myuser.dob}}<br/>
+      <b><u>GENDER</u></b>:{{myuser.gender}}<br/>
+      <b><u>LOCATION</u></b>:{{myuser.location}}<br/>
+      <b><u>AboutMe</u></b>:{{myuser.aboutMe}}<br/>
+      <h3><a href="/editprofile"> EDIT </a></h1>
+    </div>
+    <div align=center class=profile-inner>
+      <b><u>FOLLOWING</u></b>:{{followingLen}}<br/>
+      <b><u>FOLLOWERS</u></b>:{{followedLen}}<br/>
+    </div>
+    </div>
+  <div class="right" align=center>
+    <h1 align=center><u> WELCOME BACK, <font color="red">{{myuser.userName}}</font></u> </h1>
+    <form  class="tweet" align=center action="/addtweet" method="post">
+      <textarea align=center name="tweet" rows="3" cols="60" maxlength="280" placeholder="Enter a tweet"></textarea><br/>
+      <input type="submit" name="button" value="POST">
+      <input type="submit" name="button" value="CANCEL">
+    </form>
+
+    <!-- {{my_tweet_len}} -->
+
+    {% for tweet in followTweet %}
+        {% if myuser.userName == tweet.userName %}
+        <div id="search">
+          <p align="left"><u><i> <a href="/profiledisplay?name={{tweet.userName}}">{{tweet.userName}}</a> </i></u></p>
+          <p align="left"> {{tweet.timestamp}} </p>
+        {{tweet.tweet}}
+        <form action="/?name={{tweet.key.id()}}" method="post">
+        <input type="submit" value="DELETE" name="button"/>
+        <input type="submit" value="EDIT" name="button"/>
+        </form>
+        </div>
+        {% else %}
+
+        <div id="search">
+          <p align="left"><u><i> <a href="/profiledisplay?name={{tweet.userName}}">{{tweet.userName}}</a></i></u></p>
+          <p align="left"> {{tweet.timestamp}} </p>
+        {{tweet.tweet}}
+        </div>
+        {% endif %}
+    {% endfor %}
+  </div>
+
+
+  </body>
+</html>

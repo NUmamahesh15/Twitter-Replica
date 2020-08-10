@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>PROFILE DISPLAY</title>
+    <style>
+      div#user-details {
+        padding: 5px;
+        /* border: 1px solid blue; */
+        border-radius: 8px;
+        background-color: #A6D3BD;
+        width: 500px;
+        text-align: center;
+        resize: both;
+        margin: auto;
+      }
+      div#display {
+        padding: 5px;
+        /* border: 1px solid blue; */
+        border-radius: 8px;
+        background-color: #B0C4FA;
+        width: 500px;
+        text-align: center;
+        resize: both;
+        margin: auto;
+      }
+      div#profile {
+        padding: 5px;
+        border: 1px solid blue;
+        border-radius: 8px;
+        background-color: #A1F1E9;
+        width: 800px;
+        text-align: center;
+        resize: both;
+        margin: auto;
+      }
+      .navbar{
+        width:100%;
+        height:60px;
+        overflow:hidden;
+        background-color:#ffdd11;
+      }
+      .navbar2{
+        width:100%;
+        height:60px;
+        overflow:hidden;
+        background-color:#379BA4;
+      }
+      .left{
+        width:25%;
+      	float:left;
+      	height:auto;
+      }
+      .right{
+        width:75%;
+      	float:left;
+      	height:auto;
+      }
+    </style>
+  </head>
+  <body bgcolor= #E2E8EB>
+    <div class=navbar>
+      <h2><a href="/">HOME</a><h2>
+    </div>
+    <div class=navbar2>
+      <h1 align=center>DISPLAYING USER PROFILE</h1>
+    </div>
+    <div class=left>
+    <div id="display">
+      <h1 align=center><u>USER DETAILS</u></h1>
+    </div>
+    <div id="user-details">
+
+
+            <u>USERNAME:</u> <b>{{searched_user.userName}}</b><br/>
+            <u>DOB :</u> <b>{{searched_user.dob}}</b><br/>
+            <u>GENDER :</u> <b>{{searched_user.gender}}</b><br/>
+            <u>LOCATION:</u> <b> {{searched_user.location}}</b><br/>
+            <u>BIO :</u> <b> {{searched_user.aboutMe}}</b><br/>
+            <u>FOLLOWING :</u> <b> {{followingLen}}</b><br/>
+            <u>FOLLOWERS :</u> <b> {{followedLen}}</b><br/>
+    </div>
+
+    {% if current_user.userName != searched_user.userName %}
+    <div id="user-details">
+      <form action="/profiledisplay" method="post">
+          <input type="hidden" name="userName" value="{{searched_user.userName}}">
+        {% if exists %}
+          <input type="submit" name="button" value="UNFOLLOW">
+        {% else %}
+          <input type="submit" name="button" value="FOLLOW">
+        {% endif %}
+    {% endif %}
+
+      </form>
+    </div>
+  </div>
+  <div class=right>
+    <h1 align="center"><i> <u>USER TWEETS </u></i></h1>
+
+    {% for tweet in user_tweets %}
+    <div id="profile">
+    <p align="left"><u><i> {{tweet.userName}} </i></u></p>
+    <p align="left">{{tweet.timestamp}}</p>
+      {{tweet.tweet}}
+    </div>
+    {% endfor %}
+  </div>
+  </body>
+</html>
